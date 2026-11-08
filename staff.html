@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Administrativo - Kivetsoft</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="staff-body">
+
+    <!-- Header del Panel -->
+    <header class="staff-header">
+        <div class="header-container">
+            <h2>Kivetsoft <span>| Panel de Personal</span></h2>
+            <a href="index.html" class="btn-logout">Cerrar Sesión / Volver al Inicio</a>
+        </div>
+    </header>
+
+    <!-- Contenido Principal del Panel -->
+    <main class="dashboard-section" style="display: block; min-height: 85vh; padding-top: 40px;">
+        <div class="dashboard-container">
+            <h2>Control y Gestión de Citas</h2>
+            <p class="welcome-text">Visualiza y administra las citas web, agendamientos telefónicos y notas del
+                personal.</p>
+
+            <!-- Tarjetas de Estadísticas (KPIs Avanzados) -->
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <h3 id="total-appointments">0</h3>
+                    <p>Citas Totales</p>
+                </div>
+                <div class="kpi-card">
+                    <h3 id="today-appointments">0</h3>
+                    <p>Citas para Hoy</p>
+                </div>
+                <div class="kpi-card">
+                    <h3 id="pending-grooming">0</h3>
+                    <p>Baños/Peluquería Pend.</p>
+                </div>
+                <div class="kpi-card">
+                    <h3 id="pending-consultations">0</h3>
+                    <p>Consultas Pendientes</p>
+                </div>
+            </div>
+
+            <!-- Botones de Acción Rápida (No se imprimen) -->
+            <div class="no-print" style="display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;">
+                <button id="toggle-manual-form" class="btn-primary-custom">➕ Agendar Cita Telefónica /
+                    Presencial</button>
+                <button id="print-agenda-btn" class="btn-secondary-custom">🖨️ Imprimir Turnos del Día</button>
+            </div>
+
+            <!-- Formulario Oculto para Agendar Manualmente -->
+            <div id="manual-form-container" class="no-print"
+                style="display: none; background: #f8fafc; padding: 20px; border-radius: 12px; border: 1px solid #cbd5e1; margin-bottom: 25px;">
+                <h3 style="margin-bottom: 15px; color: #0f172a; font-size: 1.2rem;">Nueva Cita (Llamada / Recepción)
+                </h3>
+                <form id="manual-appointment-form"
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px;">
+                    <div>
+                        <label style="display:block; font-size:0.85rem; font-weight:600; margin-bottom:5px;">Nombre del
+                            Dueño:</label>
+                        <input type="text" id="manual-owner" required
+                            style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:6px;">
+                    </div>
+                    <div>
+                        <label
+                            style="display:block; font-size:0.85rem; font-weight:600; margin-bottom:5px;">Teléfono:</label>
+                        <input type="tel" id="manual-phone" required
+                            style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:6px;">
+                    </div>
+                    <div>
+                        <label style="display:block; font-size:0.85rem; font-weight:600; margin-bottom:5px;">Nombre de
+                            la Mascota:</label>
+                        <input type="text" id="manual-pet" required
+                            style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:6px;">
+                    </div>
+                    <div>
+                        <label style="display:block; font-size:0.85rem; font-weight:600; margin-bottom:5px;">Tipo de
+                            Mascota:</label>
+                        <select id="manual-pet-type"
+                            style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:6px;">
+                            <option value="Perro">Perro</option>
+                            <option value="Gato">Gato</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label
+                            style="display:block; font-size:0.85rem; font-weight:600; margin-bottom:5px;">Servicio:</label>
+                        <select id="manual-service"
+                            style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:6px;">
+                            <option value="Consulta Veterinaria">Consulta Veterinaria</option>
+                            <option value="Baño y Peluquería">Baño y Peluquería</option>
+                            <option value="Vacunación">Vacunación</option>
+                            <option value="Control General">Control General</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label
+                            style="display:block; font-size:0.85rem; font-weight:600; margin-bottom:5px;">Fecha:</label>
+                        <input type="date" id="manual-date" required
+                            style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:6px;">
+                    </div>
+                    <div>
+                        <label
+                            style="display:block; font-size:0.85rem; font-weight:600; margin-bottom:5px;">Hora:</label>
+                        <input type="time" id="manual-time" required
+                            style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:6px;">
+                    </div>
+                    <div style="grid-column: 1 / -1; display: flex; gap: 10px; justify-content: flex-end;">
+                        <button type="submit"
+                            style="background: #0d9488; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; cursor: pointer;">Guardar
+                            Cita Telefónica</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Barra de Búsqueda Rápida (No se imprime) -->
+            <div class="search-bar-container no-print" style="margin-bottom: 20px;">
+                <input type="text" id="search-input" placeholder="🔍 Buscar por nombre de dueño, mascota o servicio..."
+                    style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.95rem; outline: none;">
+            </div>
+
+            <div class="table-responsive">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Dueño</th>
+                            <th>Teléfono</th>
+                            <th>Mascota (Tipo)</th>
+                            <th>Servicio</th>
+                            <th>Fecha y Hora</th>
+                            <th>Notas Internas / Obs.</th>
+                            <th>Estado</th>
+                            <th class="no-print">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-appointments-tbody">
+                        <!-- Las citas se cargarán aquí dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/staff.js"></script>
+</body>
+
+</html>

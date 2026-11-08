@@ -1,18 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // --- Arreglo global para almacenar las citas en memoria ---
-  const appointmentsList = [
-    {
-      ownerName: "Carlos Gómez",
-      ownerEmail: "carlos@ejemplo.com",
-      ownerPhone: "3104567890",
-      petName: "Firulais",
-      petType: "Perro",
-      service: "Consulta Veterinaria",
-      date: "2026-11-10",
-      time: "09:00",
-    },
-  ];
-
   // --- 1. Lógica del Carrusel ---
   const slides = Array.from(document.querySelectorAll(".carousel-slide"));
   const prevBtn = document.getElementById("prevBtn");
@@ -45,16 +31,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   setInterval(nextSlide, 4000);
 
-  // --- 2. Lógica del Modal de Inicio de Sesión ---
+  // --- 2. Lógica del Modal de Inicio de Sesión (Solo Personal) ---
   const btnOpenLogin = document.getElementById("open-login-btn");
   const loginModal = document.getElementById("login-modal");
   const modalClose = document.querySelector(".modal-close");
   const loginForm = document.getElementById("login-form");
-
-  const clientDashboard = document.getElementById("client-dashboard");
-  const staffDashboard = document.getElementById("staff-dashboard");
-  const clientWelcomeMsg = document.getElementById("client-welcome-msg");
-  const mainContent = document.querySelector("main"); // O la estructura principal de tu web
 
   if (btnOpenLogin && loginModal) {
     btnOpenLogin.addEventListener("click", (e) => {
@@ -74,73 +55,25 @@ document.addEventListener("DOMContentLoaded", () => {
       loginModal.style.display = "none";
     }
   });
-  // --- 3. Envío y Bifurcación del Login ---
+
+  // --- 3. Envío del Formulario de Inicio de Sesión (Redirección a staff.html) ---
   if (loginForm) {
     loginForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      const userType = document.getElementById("user-type").value;
       const email = document.getElementById("login-email").value;
       const password = document.getElementById("login-password").value;
 
-      if (!userType || !email || !password) {
+      if (!email || !password) {
         alert("Por favor, completa todos los campos.");
         return;
       }
 
-      // 1. Cerrar el modal y limpiar el formulario
-      loginModal.style.display = "none";
-      loginForm.reset();
-
-      // 2. Mostrar el panel correspondiente según el rol
-      if (userType === "cliente") {
-        clientWelcomeMsg.textContent = `Bienvenido de nuevo, ${email}. Aquí puedes revisar el historial y los servicios de tu mascota.`;
-        clientDashboard.style.display = "block";
-        staffDashboard.style.display = "none";
-
-        // Desplazar la vista suavemente hacia el panel del cliente
-        clientDashboard.scrollIntoView({ behavior: "smooth" });
-      } else if (userType === "personal") {
-        clientDashboard.style.display = "none";
-        staffDashboard.style.display = "block";
-
-        // Cargar la tabla con las citas y actualizar datos
-        renderStaffTable();
-
-        // Desplazar la vista suavemente hacia el panel administrativo
-        staffDashboard.scrollIntoView({ behavior: "smooth" });
-      }
+      // Redirige directamente al panel independiente del personal
+      window.location.href = "staff.html";
     });
   }
 
-  // --- Función para renderizar la tabla de citas en el panel del personal ---
-  function renderStaffTable() {
-    const tbody = document.getElementById("admin-appointments-tbody");
-    if (!tbody) return;
-
-    tbody.innerHTML = "";
-    appointmentsList.forEach((appt, index) => {
-      const row = document.createElement("tr");
-      row.innerHTML = `
-        <td>${appt.ownerName}</td>
-        <td>${appt.ownerPhone}</td>
-        <td>${appt.petName} (${appt.petType})</td>
-        <td>${appt.service}</td>
-        <td>${appt.date} - ${appt.time}</td>
-        <td><button class="btn-delete" data-index="${index}">Completar / Borrar</button></td>
-      `;
-      tbody.appendChild(row);
-    });
-
-    // Agregar evento a los botones de eliminar/completar cita
-    document.querySelectorAll(".btn-delete").forEach((btn) => {
-      btn.addEventListener("click", (e) => {
-        const idx = e.target.getAttribute("data-index");
-        appointmentsList.splice(idx, 1);
-        renderStaffTable();
-      });
-    });
-  }
-  // --- 4. Lógica del Formulario de Citas (Conecta con el panel del personal) ---
+  // --- 4. Lógica del Formulario de Citas (Sincronizado con el Panel vía localStorage) ---
   const appointmentForm = document.getElementById("appointment-form");
   const successAlert = document.getElementById("success-alert");
   const appointmentSummary = document.getElementById("appointment-summary");
@@ -160,10 +93,30 @@ document.addEventListener("DOMContentLoaded", () => {
         time: document.getElementById("appointment-time").value,
       };
 
-      // Agregar la nueva cita al arreglo general para que el personal la vea
-      appointmentsList.push(newAppt);
+      // Obtener citas existentes en localStorage o inicializar el arreglo base
+      let appointmentsList = JSON.parse(
+        localStorage.getItem("kivetsoftAppointments"),
+      ) || [
+        {
+          ownerName: "Carlos Gómez",
+          ownerEmail: "carlos@ejemplo.com",
+          ownerPhone: "3104567890",
+          petName: "Firulais",
+          petType: "Perro",
+          service: "Consulta Veterinaria",
+          date: "2026-11-10",
+          time: "09:00",
+        },
+      ];
 
-      // Inyectar resumen en el formulario
+      // Agregar la nueva cita y guardarla en el almacenamiento local
+      appointmentsList.push(newAppt);
+      localStorage.setItem(
+        "kivetsoftAppointments",
+        JSON.stringify(appointmentsList),
+      );
+
+      // Inyectar resumen en el formulario web
       appointmentSummary.innerHTML = `
         <div class="summary-details">
             <p><strong>Dueño:</strong> ${newAppt.ownerName}</p>
@@ -179,13 +132,4 @@ document.addEventListener("DOMContentLoaded", () => {
       successAlert.style.display = "block";
     });
   }
-
-  // Botones de salida o regreso general
-  document.querySelectorAll(".btn-logout").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      clientDashboard.style.display = "none";
-      staffDashboard.style.display = "none";
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-  });
 });

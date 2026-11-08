@@ -228,96 +228,37 @@
         </div>
         </div>
     </section>
-    <!-- Modal de Inicio de Sesión -->
-    <div id="login-modal" class="modal-overlay">
-        <div class="modal-content">
-            <span class="modal-close">&times;</span>
-            <h3 class="modal-title">Iniciar Sesión en Kivetsoft</h3>
+    <!-- Modal de Inicio de Sesión (Solo Personal) -->
+<div id="login-modal" class="modal-overlay">
+    <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <h3 class="modal-title">Acceso Personal - Kivetsoft</h3>
 
-            <form id="login-form">
-                <!-- Selector de Tipo de Usuario -->
-                <div class="form-group">
-                    <label for="user-type">Tipo de Usuario:</label>
-                    <select id="user-type" required>
-                        <option value="">-- Selecciona tu rol --</option>
-                        <option value="cliente">Cliente (Dueño de mascota)</option>
-                        <option value="personal">Personal de la Clínica</option>
-                    </select>
-                </div>
+        <form id="login-form">
+            <!-- Correo Electrónico -->
+            <div class="form-group">
+                <label for="login-email">Correo Institucional:</label>
+                <input type="email" id="login-email" required placeholder="personal@kivetsoft.com">
+            </div>
 
-                <!-- Correo Electrónico -->
-                <div class="form-group">
-                    <label for="login-email">Correo Electrónico:</label>
-                    <input type="email" id="login-email" required placeholder="correo@ejemplo.com">
-                </div>
+            <!-- Contraseña -->
+            <div class="form-group">
+                <label for="login-password">Contraseña:</label>
+                <input type="password" id="login-password" required placeholder="********">
+            </div>
 
-                <!-- Contraseña -->
-                <div class="form-group">
-                    <label for="login-password">Contraseña:</label>
-                    <input type="password" id="login-password" required placeholder="********">
-                </div>
-
-                <!-- Botón de Ingresar (Este procesa el formulario) -->
-                <button type="submit" class="btn-login-submit">Ingresar</button>
-            </form>
-        </div>
+            <!-- Botón de Ingresar -->
+            <button type="submit" class="btn-login-submit">Ingresar al Sistema</button>
+        </form>
     </div>
+</div>
     <!-- Pie de página -->
     <footer class="main-footer">
         <div class="container">
             <p>&copy; 2026 Kivetsoft. Sistema de Gestión Veterinaria</p>
         </div>
     </footer>
-    <!-- === PANEL DE CLIENTE (Oculto por defecto) === -->
-    <section id="client-dashboard" class="dashboard-section" style="display: none;">
-        <div class="dashboard-container">
-            <h2>Panel de Cliente - Kivetsoft</h2>
-            <p id="client-welcome-msg" class="welcome-text"></p>
 
-            <div class="dashboard-grid">
-                <div class="card">
-                    <h3>🐾 Mis Mascotas y Historial</h3>
-                    <p><strong>Mascota:</strong> Luna (Pomeranian)</p>
-                    <p><strong>Última Visita:</strong> Control general y nutrición (Junio 2026)</p>
-                    <p><strong>Estado de salud:</strong> Excelente recuperación post-cirugía</p>
-                </div>
-                <div class="card">
-                    <h3>📅 Próximas Citas y Baños</h3>
-                    <p><strong>Servicio:</strong> Baño y Peluquería estética</p>
-                    <p><strong>Fecha:</strong> 15 de Noviembre, 2026 - 10:00 AM</p>
-                    <span class="badge-status">Confirmada</span>
-                </div>
-            </div>
-            <button id="logout-client-btn" class="btn-logout">Cerrar Sesión</button>
-        </div>
-    </section>
-
-    <!-- === PANEL DE PERSONAL / ADMINISTRATIVO (Oculto por defecto) === -->
-    <section id="staff-dashboard" class="dashboard-section" style="display: none;">
-        <div class="dashboard-container">
-            <h2>Panel Administrativo - Control de Citas Kivetsoft</h2>
-            <p class="welcome-text">Gestión general de turnos y solicitudes de clientes.</p>
-
-            <div class="table-responsive">
-                <table class="admin-table">
-                    <thead>
-                        <tr>
-                            <th>Dueño</th>
-                            <th>Teléfono</th>
-                            <th>Mascota (Tipo)</th>
-                            <th>Servicio</th>
-                            <th>Fecha y Hora</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody id="admin-appointments-tbody">
-                        <!-- Las citas agendadas aparecerán aquí dinámicamente -->
-                    </tbody>
-                </table>
-            </div>
-            <button id="logout-staff-btn" class="btn-logout">Cerrar Sesión</button>
-        </div>
-    </section>
     <!-- Scripts -->
     <script src="js/main.js"></script>
 </body>
