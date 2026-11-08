@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kivetsoft - Sistema de Cuidado y Medicina Veterinaria</title>
+    <link rel="icon" type="image/png" href="img/Logo1.png">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <!-- Encabezado y Barra de Navegación -->
+    <header class="main-header">
+        <div class="container nav-container">
+            <h1 class="logo">
+                <a href="#inicio" class="logo-link">
+                    <img src="img/Logo1.png" alt="Logo Kivetsoft" class="logo-img">
+                    Kivet<span>soft</span>
+                </a>
+            </h1>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#citas" class="btn-nav">Agendar Cita</a></li>
+                    <li><button id="open-login-btn" class="btn-login-nav">Iniciar Sesión</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Sección Principal (Hero Section de 2 Columnas) -->
+    <section id="inicio" class="hero-section">
+        <div class="container hero-container">
+            <!-- Columna Izquierda: Textos y Botones -->
+            <div class="hero-text">
+                <h2>El cuidado integral que tu mascota merece</h2>
+                <p>Gestiona consultas de medicina general, baños, peluquería e higiene de forma rápida y organizada en
+                    un solo lugar.</p>
+                <div class="hero-buttons">
+                    <a href="#servicios" class="btn btn-primary">Ver Servicios</a>
+                    <a href="#citas" class="btn btn-secondary">Reservar Turno</a>
+                </div>
+            </div>
+
+            <!-- Columna Derecha: Imagen con Bordes Redondeados -->
+            <div class="hero-image-box">
+                <img src="img/zona.jpg" alt="Mascota en Kivetsoft" class="hero-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Catálogo de Servicios -->
+    <section id="servicios" class="services-section">
+        <div class="container">
+            <h3 class="section-title">Nuestros Servicios</h3>
+            <p class="section-subtitle">Especializados en bienestar, salud preventiva y estética animal.</p>
+
+            <div class="services-grid">
+                <!-- Tarjeta 1: Medicina General -->
+                <div class="service-card">
+                    <h4>Medicina General</h4>
+                    <p>Consultas veterinarias programadas, planes de vacunación, desparasitación y controles de rutina
+                        para tu peludo.</p>
+                    <span class="service-tag">Salud</span>
+                </div>
+
+                <!-- Tarjeta 2: Baño e Higiene -->
+                <div class="service-card">
+                    <h4>Baño y Estética</h4>
+                    <p>Baños especializados según tipo de pelaje, secado profesional, limpieza de oídos y corte de uñas
+                        higiénico.</p>
+                    <span class="service-tag">Cuidado</span>
+                </div>
+
+                <!-- Tarjeta 3: Peluquería -->
+                <div class="service-card">
+                    <h4>Peluquería Canina y Felina</h4>
+                    <p>Cortes de raza, depilación estética y estilismo profesional adaptado al confort y bienestar de la
+                        mascota.</p>
+                    <span class="service-tag">Estética</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Sección de Carrusel de Fotos -->
+    <section class="gallery-section">
+        <div class="container">
+            <h3 class="section-title">Nuestras Instalaciones y Pacientes</h3>
+            <p class="section-subtitle">Conoce los espacios diseñados para la comodidad y bienestar de tu mascota.</p>
+
+            <div class="carousel-container">
+                <button class="carousel-btn prev-btn" id="prevBtn">&#10094;</button>
+
+                <div class="carousel-track-container">
+                    <ul class="carousel-track" id="carouselTrack">
+                        <li class="carousel-slide current-slide">
+                            <img src="img/consultorio1.jpg" alt="Consulta veterinaria">
+                            <div class="slide-caption">Consultorios equipados para medicina general</div>
+                        </li>
+                        <li class="carousel-slide current-slide">
+                            <img src="img/consultorio2.jpg" alt="Consulta veterinaria">
+                            <div class="slide-caption">Consultorios equipados para medicina general</div>
+                        </li>
+                        <li class="carousel-slide current-slide">
+                            <img src="img/consultorio3.jpg" alt="Consulta veterinaria">
+                            <div class="slide-caption">Consultorios equipados para medicina general</div>
+                        </li>
+                        <li class="carousel-slide current-slide">
+                            <img src="img/consultorio4.jpg" alt="Consulta veterinaria">
+                            <div class="slide-caption">Consultorios equipados para medicina general</div>
+                        </li>
+                        <li class="carousel-slide">
+                            <img src="img/peluqueria1.jpg" alt="Zona de peluquería">
+                            <div class="slide-caption">Área de estética e higiene especializada</div>
+                        </li>
+                        <li class="carousel-slide">
+                            <img src="img/peluqueria2.jpg" alt="Zona de peluquería">
+                            <div class="slide-caption">Área de estética e higiene especializada</div>
+                        </li>
+                        <li class="carousel-slide">
+                            <img src="img/peluqueria3.jpg" alt="Zona de peluquería">
+                            <div class="slide-caption">Área de estética e higiene especializada</div>
+                        </li>
+                        <li class="carousel-slide">
+                            <img src="img/peluqueria4.jpg" alt="Zona de peluquería">
+                            <div class="slide-caption">Área de estética e higiene especializada</div>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <button class="carousel-btn next-btn" id="nextBtn">&#10095;</button>
+            </div>
+
+            <!-- Indicadores (puntos) -->
+            <div class="carousel-nav" id="carouselNav">
+                <button class="carousel-indicator current-slide"></button>
+                <button class="carousel-indicator"></button>
+                <button class="carousel-indicator"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Agendamiento -->
+    <section id="citas" class="appointment-section">
+        <div class="container">
+            <div class="appointment-section-header">
+
+                <h3 class="section-title">Reserva tu cita</h3>
+                <p class="section-subtitle">Completa los datos para agendar la atención de tu mascota.</p>
+            </div>
+
+            <form id="appointment-form" class="appointment-form">
+                <!-- Nombre y apellido del dueño -->
+                <div class="form-group">
+                    <label for="owner-name">Nombre y apellido del dueño</label>
+                    <input type="text" id="owner-name" name="ownerName" required placeholder="Ej. Luis Francisco Rojas">
+                </div>
+
+                <!-- Correo -->
+                <div class="form-group">
+                    <label for="owner-email">Correo electrónico</label>
+                    <input type="email" id="owner-email" name="ownerEmail" required
+                        placeholder="Ej. correo@ejemplo.com">
+                </div>
+
+                <!-- Número de teléfono -->
+                <div class="form-group">
+                    <label for="owner-phone">Número de teléfono</label>
+                    <input type="tel" id="owner-phone" name="ownerPhone" required placeholder="Ej. 3001234567">
+                </div>
+
+                <!-- Nombre de la mascota -->
+                <div class="form-group">
+                    <label for="pet-name">Nombre de la mascota</label>
+                    <input type="text" id="pet-name" name="petName" required placeholder="Ej. Lulú">
+                </div>
+
+                <!-- Tipo de mascota -->
+                <div class="form-group">
+                    <label for="pet-type">Tipo de mascota</label>
+                    <select id="pet-type" name="petType" required>
+                        <option value="">-- Selecciona el tipo --</option>
+                        <option value="Perro">Perro</option>
+                        <option value="Gato">Gato</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+
+                <!-- Servicio a seleccionar -->
+                <div class="form-group">
+                    <label for="service-select">Servicio a seleccionar</label>
+                    <select id="service-select" name="service" required>
+                        <option value="">-- Selecciona un servicio --</option>
+                        <option value="Consulta general">Consulta general</option>
+                        <option value="Vacunación / Desparasitación">Vacunación / Desparasitación</option>
+                        <option value="Baño e Higiene">Baño e Higiene</option>
+                        <option value="Peluquería">Peluquería</option>
+                    </select>
+                </div>
+
+                <!-- Fecha de la cita -->
+                <div class="form-group">
+                    <label for="appointment-date">Fecha de la cita</label>
+                    <input type="date" id="appointment-date" name="appointmentDate" required>
+                </div>
+
+                <!-- Hora de la cita -->
+                <div class="form-group">
+                    <label for="appointment-time">Hora de la cita</label>
+                    <input type="time" id="appointment-time" name="appointmentTime" required>
+                </div>
+
+                <!-- Botón de Agendar -->
+                <button type="submit" class="btn-confirm">Agendar cita</button>
+            </form>
+
+            <!-- Mensaje de Confirmación con Resumen (Oculto al inicio) -->
+            <div id="success-alert" class="confirmation-alert" style="display: none;">
+                <h4>¡Cita agendada con éxito! 🐾</h4>
+                <div id="appointment-summary" class="appointment-summary-box"></div>
+                <p class="confirmation-note"><strong>Días antes de su cita confirmaremos su asistencia vía WhatsApp
+                        o correo.</strong></p>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- Modal de Inicio de Sesión -->
+    <div id="login-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h3 class="modal-title">Iniciar Sesión en Kivetsoft</h3>
+
+            <form id="login-form">
+                <!-- Selector de Tipo de Usuario -->
+                <div class="form-group">
+                    <label for="user-type">Tipo de Usuario:</label>
+                    <select id="user-type" required>
+                        <option value="">-- Selecciona tu rol --</option>
+                        <option value="cliente">Cliente (Dueño de mascota)</option>
+                        <option value="personal">Personal de la Clínica</option>
+                    </select>
+                </div>
+
+                <!-- Correo Electrónico -->
+                <div class="form-group">
+                    <label for="login-email">Correo Electrónico:</label>
+                    <input type="email" id="login-email" required placeholder="correo@ejemplo.com">
+                </div>
+
+                <!-- Contraseña -->
+                <div class="form-group">
+                    <label for="login-password">Contraseña:</label>
+                    <input type="password" id="login-password" required placeholder="********">
+                </div>
+
+                <!-- Botón de Ingresar (Este procesa el formulario) -->
+                <button type="submit" class="btn-login-submit">Ingresar</button>
+            </form>
+        </div>
+    </div>
+    <!-- Pie de página -->
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2026 Kivetsoft. Sistema de Gestión Veterinaria</p>
+        </div>
+    </footer>
+    <!-- === PANEL DE CLIENTE (Oculto por defecto) === -->
+    <section id="client-dashboard" class="dashboard-section" style="display: none;">
+        <div class="dashboard-container">
+            <h2>Panel de Cliente - Kivetsoft</h2>
+            <p id="client-welcome-msg" class="welcome-text"></p>
+
+            <div class="dashboard-grid">
+                <div class="card">
+                    <h3>🐾 Mis Mascotas y Historial</h3>
+                    <p><strong>Mascota:</strong> Luna (Pomeranian)</p>
+                    <p><strong>Última Visita:</strong> Control general y nutrición (Junio 2026)</p>
+                    <p><strong>Estado de salud:</strong> Excelente recuperación post-cirugía</p>
+                </div>
+                <div class="card">
+                    <h3>📅 Próximas Citas y Baños</h3>
+                    <p><strong>Servicio:</strong> Baño y Peluquería estética</p>
+                    <p><strong>Fecha:</strong> 15 de Noviembre, 2026 - 10:00 AM</p>
+                    <span class="badge-status">Confirmada</span>
+                </div>
+            </div>
+            <button id="logout-client-btn" class="btn-logout">Cerrar Sesión</button>
+        </div>
+    </section>
+
+    <!-- === PANEL DE PERSONAL / ADMINISTRATIVO (Oculto por defecto) === -->
+    <section id="staff-dashboard" class="dashboard-section" style="display: none;">
+        <div class="dashboard-container">
+            <h2>Panel Administrativo - Control de Citas Kivetsoft</h2>
+            <p class="welcome-text">Gestión general de turnos y solicitudes de clientes.</p>
+
+            <div class="table-responsive">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Dueño</th>
+                            <th>Teléfono</th>
+                            <th>Mascota (Tipo)</th>
+                            <th>Servicio</th>
+                            <th>Fecha y Hora</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-appointments-tbody">
+                        <!-- Las citas agendadas aparecerán aquí dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+            <button id="logout-staff-btn" class="btn-logout">Cerrar Sesión</button>
+        </div>
+    </section>
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
