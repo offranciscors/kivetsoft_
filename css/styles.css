@@ -12,7 +12,9 @@
   --transition: all 0.3s ease;
 }
 
-* {
+*,
+*:before,
+*:after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -20,6 +22,8 @@
 
 html {
   scroll-behavior: smooth;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -27,6 +31,8 @@ body {
   color: var(--text-color);
   background-color: var(--white);
   line-height: 1.6;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .container {
@@ -43,13 +49,17 @@ body {
   position: sticky;
   top: 0;
   z-index: 1000;
+  width: 100%;
 }
 
 .nav-container {
+  max-width: 1100px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 70px;
+  padding: 0 15px;
 }
 
 .logo {
@@ -148,6 +158,9 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 15px;
 }
 
 .hero-text {
@@ -223,19 +236,6 @@ body {
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
 }
 
-@media (max-width: 768px) {
-  .hero-container {
-    flex-direction: column;
-    text-align: center;
-  }
-  .hero-text {
-    text-align: center;
-  }
-  .hero-buttons {
-    justify-content: center;
-  }
-}
-
 /* --- Secciones y Títulos --- */
 .section-title {
   text-align: center;
@@ -260,6 +260,8 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 .service-card {
@@ -424,6 +426,7 @@ body {
   border-radius: 20px;
   padding: 40px;
   max-width: 800px;
+  width: 100%;
   margin: 0 auto;
   color: #ffffff;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
@@ -548,10 +551,11 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(15, 23, 42, 0.7);
+  background-color: rgba(15, 23, 42, 0.75);
   z-index: 2000;
   justify-content: center;
   align-items: center;
+  backdrop-filter: blur(4px);
 }
 
 .modal-content {
@@ -561,14 +565,28 @@ body {
   width: 90%;
   max-width: 420px;
   position: relative;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.3),
+    0 10px 10px -5px rgba(0, 0, 0, 0.2);
+  animation: modalFadeIn 0.3s ease-in-out;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .modal-close {
   position: absolute;
   top: 15px;
   right: 20px;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   font-weight: bold;
   color: #64748b;
   cursor: pointer;
@@ -584,7 +602,7 @@ body {
   color: #0f172a;
   font-size: 1.5rem;
   font-weight: 700;
-  margin-bottom: 25px;
+  margin-bottom: 24px;
 }
 
 #login-form .form-group {
@@ -598,7 +616,7 @@ body {
   display: block;
   font-size: 0.9rem;
   font-weight: 600;
-  color: #1e293b;
+  color: #334155;
   margin-bottom: 6px;
 }
 
@@ -614,7 +632,6 @@ body {
   color: #0f172a;
   outline: none;
   transition: var(--transition);
-  box-sizing: border-box;
 }
 
 #login-form input:focus,
@@ -643,23 +660,14 @@ body {
   transform: translateY(-1px);
 }
 
-/* --- Pie de Página --- */
-.main-footer {
-  background-color: var(--secondary-color);
-  color: var(--white);
-  text-align: center;
-  padding: 24px 0;
-  font-size: 0.9rem;
-}
-
-/* --- Título Principal de la Sección de Citas (Más Grande y Destacado) --- */
+/* --- Título de la Sección de Citas --- */
 .appointment-section-header {
   text-align: center;
   margin-bottom: 40px;
 }
 
 .appointment-section-header .section-title {
-  font-size: 2.8rem; /* Aumentamos el tamaño para que luzca imponente */
+  font-size: 2.8rem;
   font-weight: 800;
   color: var(--secondary-color, #0f172a);
   margin-bottom: 12px;
@@ -667,133 +675,14 @@ body {
 }
 
 .appointment-section-header .section-subtitle {
-  font-size: 1.15rem; /* Subtítulo un poco más legible */
+  font-size: 1.15rem;
   color: var(--gray-color, #64748b);
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.5;
 }
 
-/* --- Estilos del Modal de Inicio de Sesión --- */
-
-/* Fondo oscuro translúcido que cubre toda la pantalla */
-.modal-overlay {
-  display: none; /* Oculto por defecto hasta que se presiona el botón */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(15, 23, 42, 0.75); /* Fondo oscuro elegante */
-  z-index: 1000;
-  justify-content: center;
-  align-items: center;
-  backdrop-filter: blur(4px); /* Efecto difuminado moderno */
-}
-
-/* Caja blanca o flotante del contenido */
-.modal-content {
-  background-color: #ffffff;
-  padding: 35px 30px;
-  border-radius: 16px;
-  width: 100%;
-  max-width: 420px;
-  box-shadow:
-    0 20px 25px -5px rgba(0, 0, 0, 0.3),
-    0 10px 10px -5px rgba(0, 0, 0, 0.2);
-  position: relative;
-  animation: modalFadeIn 0.3s ease-in-out;
-}
-
-/* Animación sutil al abrir */
-@keyframes modalFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Botón de cierre (La "X") */
-.modal-close {
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #64748b;
-  cursor: pointer;
-  transition: color 0.2s;
-}
-
-.modal-close:hover {
-  color: #0f172a;
-}
-
-/* Título interno del modal */
-.modal-content .modal-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #0f172a;
-  margin-bottom: 24px;
-  text-align: center;
-}
-
-/* Estilos de los inputs y selects dentro del modal para que coincidan con tu diseño */
-.modal-content .form-group {
-  margin-bottom: 18px;
-}
-
-.modal-content label {
-  display: block;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #334155;
-  margin-bottom: 6px;
-}
-
-.modal-content input,
-.modal-content select {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
-  font-size: 0.95rem;
-  outline: none;
-  transition:
-    border-color 0.2s,
-    box-shadow 0.2s;
-}
-
-.modal-content input:focus,
-.modal-content select:focus {
-  border-color: #0d9488;
-  box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.15);
-}
-
-/* Botón de ingresar dentro del modal */
-.modal-content button[type="submit"] {
-  width: 100%;
-  padding: 12px;
-  background-color: #ea580c; /* O el color naranja/primario que manejes */
-  color: #ffffff;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  margin-top: 10px;
-}
-
-.modal-content button[type="submit"]:hover {
-  background-color: #c2410c;
-}
-
-/* --- Estilos para los Dashboards de Cliente y Personal --- */
+/* --- Dashboards y Panel Administrativo --- */
 .dashboard-section {
   padding: 60px 20px;
   background-color: #f8fafc;
@@ -844,9 +733,11 @@ body {
   margin-top: 10px;
 }
 
-/* Estilos de la tabla administrativa */
+/* Tabla administrativa */
 .table-responsive {
+  width: 100%;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   margin-bottom: 25px;
 }
 
@@ -854,6 +745,7 @@ body {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
+  min-width: 650px;
 }
 
 .admin-table th,
@@ -898,7 +790,7 @@ body {
   background-color: #475569;
 }
 
-/* --- Ajuste para el Header del Panel de Personal --- */
+/* Header del Panel de Personal */
 .staff-header {
   background-color: #0f172a;
   color: #ffffff;
@@ -913,6 +805,7 @@ body {
   align-items: center;
   flex-wrap: wrap;
   gap: 15px;
+  width: 100%;
 }
 
 .staff-header h2 {
@@ -922,7 +815,7 @@ body {
 }
 
 .staff-header h2 span {
-  color: #0d9488; /* Color de acento corporativo */
+  color: #0d9488;
   font-weight: 400;
 }
 
@@ -957,24 +850,6 @@ body {
   background-color: #0f766e;
 }
 
-/* --- Estilos para Notas Internas y Botón Secundario --- */
-.notes-input {
-  width: 100%;
-  padding: 6px 10px;
-  border: 1px dashed #cbd5e1;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  outline: none;
-  background: #fdf8f6;
-  transition: border-color 0.2s;
-}
-
-.notes-input:focus {
-  border-color: #0d9488;
-  background: #fff;
-  border-style: solid;
-}
-
 .btn-secondary-custom {
   background-color: #475569;
   color: white;
@@ -991,40 +866,7 @@ body {
   background-color: #334155;
 }
 
-/* --- Configuración para Impresión en Papel / PDF --- */
-@media print {
-  body {
-    background-color: #ffffff;
-  }
-
-  .staff-header,
-  .no-print,
-  .btn-delete,
-  .status-select,
-  .notes-input {
-    display: none !important;
-  }
-
-  .dashboard-section {
-    padding: 0;
-    background: white;
-  }
-
-  .dashboard-container {
-    box-shadow: none;
-    padding: 0;
-    margin: 0;
-    max-width: 100%;
-  }
-
-  .admin-table th,
-  .admin-table td {
-    border: 1px solid #000;
-    color: #000;
-  }
-}
-
-/* --- Corrección de la Cuadrícula de Cápsulas (KPIs) --- */
+/* KPIs / Cápsulas */
 .kpi-grid {
   display: grid !important;
   grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)) !important;
@@ -1055,7 +897,7 @@ body {
   margin: 0 !important;
 }
 
-/* --- Estilos para el Bloque de Notas Internas en la Tabla --- */
+/* Notas Internas Avanzadas */
 .notes-container {
   display: flex;
   flex-direction: column;
@@ -1109,83 +951,84 @@ body {
   background-color: #0f766e;
 }
 
-/* --- Reglas para Evitar Desbordamiento Global --- */
-html,
-body {
-  max-width: 100%;
-  overflow-x: hidden; /* Evita que la página se desplace horizontalmente */
-}
-
-* {
-  box-sizing: border-box;
-}
-
-/* --- Adaptación Responsive para Móviles (Pantallas menores a 768px) --- */
+/* --- Adaptación Responsive para Dispositivos Móviles --- */
 @media (max-width: 768px) {
-  /* 1. Ajuste del Header y Navegación */
-  header,
-  .header-container {
+  .nav-container {
     flex-direction: column;
-    align-items: center;
+    height: auto;
     padding: 15px;
     gap: 15px;
-    text-align: center;
   }
 
-  nav ul,
-  .nav-links {
+  .nav-menu ul {
     flex-direction: column;
     gap: 10px;
-    width: 100%;
-    padding: 0;
-  }
-
-  /* 2. Ajuste de Botones en la Barra Superior */
-  .header-buttons,
-  .nav-actions {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    gap: 10px;
-  }
-
-  .header-buttons button,
-  .header-buttons a,
-  .btn-login,
-  .btn-primary {
     width: 100%;
     text-align: center;
   }
 
-  /* 3. Ajuste de la Sección Hero / Bienvenida */
-  .hero,
   .hero-container {
     flex-direction: column;
-    padding: 30px 15px;
     text-align: center;
+    padding: 20px 15px;
   }
 
-  .hero-text h1,
-  .hero-content h1 {
-    font-size: 1.8rem; /* Reduce el tamaño del título en móvil */
-    line-height: 1.3;
+  .hero-text {
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .hero-text h2 {
+    font-size: 2rem;
   }
 
   .hero-buttons {
+    justify-content: center;
     flex-direction: column;
     width: 100%;
-    gap: 10px;
   }
 
-  .hero-buttons a,
-  .hero-buttons button {
+  .hero-buttons .btn {
     width: 100%;
+    text-align: center;
   }
 
-  /* 4. Ajuste de las Tablas y Paneles */
-  .table-responsive {
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+  .staff-header .header-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .kpi-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* --- Configuración para Impresión en Papel / PDF --- */
+@media print {
+  body {
+    background-color: #ffffff;
+  }
+  .staff-header,
+  .no-print,
+  .btn-delete,
+  .status-select,
+  .notes-textarea,
+  .btn-save-note {
+    display: none !important;
+  }
+  .dashboard-section {
+    padding: 0;
+    background: white;
+  }
+  .dashboard-container {
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+    max-width: 100%;
+  }
+  .admin-table th,
+  .admin-table td {
+    border: 1px solid #000;
+    color: #000;
   }
 }
